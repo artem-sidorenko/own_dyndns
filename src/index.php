@@ -33,7 +33,7 @@ if( (!isset($users[$username])) || !password_verify($password,$users[$username][
 	$output=array(); $returnvar=0;
 	exec('echo -e "'.$commands.'" | nsupdate -k '.$dns_key_file,$output,$returnvar);
 	if($returnvar==0)
-		echo "good $ip";
+		echo "good $ipv4";
 	else
 		die('update failed');
 }
