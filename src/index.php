@@ -8,11 +8,11 @@
 include 'conf/config.inc.php';
 
 #get our input vars
-$ipv4=$_GET["ipaddr"];
-$ipv6=$_GET["ip6addr"];
-$username=$_GET["username"];
-$domain=$_GET["domain"];
-$password=$_GET["pass"];
+@$ipv4=$_GET["ipaddr"];
+@$ipv6=$_GET["ip6addr"];
+@$username=$_GET["username"];
+@$domain=$_GET["domain"];
+@$password=$_GET["pass"];
 
 #check auth
 if( (!isset($users[$username])) || !password_verify($password,$users[$username]["password"]) || (!in_array($domain,$users[$username]["zones"])) ){
@@ -20,7 +20,14 @@ if( (!isset($users[$username])) || !password_verify($password,$users[$username][
 }else{
 	#auth if ok, proceed with update
 	$zone=substr($domain,strpos($domain,"."));
-	$commands="server $dns_server\\nzone $zone\\nupdate delete $domain\\nupdate add $domain $dns_ttl A $ip\\n";
+	#some basics
+	$commands="server $dns_server\\nupdate delete $domain\\n";
+	#do we have ipv4?
+	if(!empty($ipv4))
+		$commands.="update add $domain $dns_ttl A $ipv4\\n";
+	#do we have ipv6?
+	if(!empty($ipv6))
+		$commands.="update add $domain $dns_ttl AAAA $ipv6\\n";
 	#ready to run the update
 	$commands.="send\\n";
 	$output=array(); $returnvar=0;
