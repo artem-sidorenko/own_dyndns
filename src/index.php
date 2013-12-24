@@ -15,7 +15,7 @@ $domain=$_GET["domain"];
 $password=$_GET["pass"];
 
 #check auth
-if( (!isset($users[$username])) || !password_verify($password,$users[$username]["password"]) || (!in_array($users[$username]["zones"])) ){
+if( (!isset($users[$username])) || !password_verify($password,$users[$username]["password"]) || (!in_array($domain,$users[$username]["zones"])) ){
 	die("authorisation failed");
 }else{
 	#auth if ok, proceed with update
