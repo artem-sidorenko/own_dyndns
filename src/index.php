@@ -19,11 +19,13 @@ if( (!isset($users[$username])) || ($password!=$users[$username]["password"]) ||
 }else{
 	#auth if ok, proceed with update
 	$zone=substr($domain,strpos($domain,"."));
-	$commands="server $dns_server\\nzone $zone\\nupdate delete $domain\\nupdate add $domain $dns_ttl $ip\\nsend\\n";
+	$commands="server $dns_server\\nzone $zone\\nupdate delete $domain\\nupdate add $domain $dns_ttl A $ip\\nsend\\n";
 	$output=array(); $returnvar=0;
 	exec('echo -e "'.$commands.'" | nsupdate -k '.$dns_key_file,$output,$returnvar);
 	if($returnvar==0)
 		echo "good $ip";
+	else
+		die('update failed');
 }
 
 ?>
