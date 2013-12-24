@@ -8,8 +8,8 @@
 include 'conf/config.inc.php';
 
 #get our input vars
-$ipv4=$_GET=["ipaddr"];
-$ipv6=$_GET=["ip6addr"];
+$ipv4=$_GET["ipaddr"];
+$ipv6=$_GET["ip6addr"];
 $username=$_GET["username"];
 $domain=$_GET["domain"];
 $password=$_GET["pass"];
