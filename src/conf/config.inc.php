@@ -1,6 +1,6 @@
 <?php
 
-$dns_key_file="conf/dyndns";
+$dns_key_file="conf/dyndns.private";
 $dns_ttl=60;
 $dns_server="localhost";
 
