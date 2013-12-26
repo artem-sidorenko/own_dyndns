@@ -32,8 +32,12 @@ if( (!isset($users[$username])) || !password_verify($password,$users[$username][
 	$commands.="send\\n";
 	$output=array(); $returnvar=0;
 	exec('echo -e "'.$commands.'" | nsupdate -k '.$dns_key_file,$output,$returnvar);
-	if($returnvar==0)
-		echo "good $ipv4";
+	if($returnvar==0){
+		if(!empty($ipv4))
+			echo "good $ipv4\n";
+		if(!empty($ipv6))
+			echo "good $ipv6\n";
+	}
 	else
 		die('update failed');
 }
