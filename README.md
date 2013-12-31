@@ -16,6 +16,13 @@ Features
      - pass - password for authentification
      - domain - dns name to update to
 
+Requirements
+============
+ - Webserver with PHP 5.5 due to password_verify() function
+ - Own DNS server like Bind
+ - nsupdate and dnssec-keygen commands from bind package(s)
+ - mkpasswd from whois package
+
 TODOs, known limitations
 ========================
  - missing validation of IP addresses and dns names, it might result into broken updates and error exit codes of nsupdate
