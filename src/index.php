@@ -5,7 +5,7 @@
 # Author: Artem Sidorenko http://2realities.com
 
 #include settings
-include 'conf/config.inc.php';
+include 'conf/config_default.inc.php';
 
 #get our input vars
 @$ipv4=$_GET["ipaddr"];
